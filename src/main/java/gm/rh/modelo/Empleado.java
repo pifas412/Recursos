@@ -1,5 +1,8 @@
 package gm.rh.modelo;
 
+import org.hibernate.annotations.Collate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,15 +19,16 @@ public class Empleado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idEmpleado;
 
-	String nombreEmpleado;
+
+	String nombre;
 
 	String departamento;
 
 	Double sueldo;
 
-	public Empleado(Integer idEmpleado, String nombreEmpleado, String departamento, Double sueldo) {
+	public Empleado(Integer idEmpleado, String nombre, String departamento, Double sueldo) {
 		this.idEmpleado = idEmpleado;
-		this.nombreEmpleado = nombreEmpleado;
+		this.nombre = nombre;
 		this.departamento = departamento;
 		this.sueldo = sueldo;
 	}

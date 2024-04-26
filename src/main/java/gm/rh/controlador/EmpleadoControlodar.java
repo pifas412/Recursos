@@ -12,24 +12,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gm.rh.modelo.Empleado;
 import gm.rh.servicio.IEmpleadoServicio;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("rh-app")
-@CrossOrigin(value = "http://localhost:3000")
+@CrossOrigin(value = "http://localhost:5173")
 public class EmpleadoControlodar {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmpleadoControlodar.class);
 
 	@Autowired
 	private IEmpleadoServicio empleadoServicio;
-	
-	
+
 	@GetMapping("/empleados")
-	public List<Empleado> obtenerEmpleados(){
+	public List<Empleado> obtenerEmpleados() {
 		var empleados = empleadoServicio.listarEmpleado();
 		empleados.forEach(empleado -> logger.info(empleado.toString()));
 		return empleados;
 	}
-	
+
+	@PostMapping("/empleados")
+	public Empleado agregarEmpleado(@RequestBody Empleado empleado) {
+		logger.info("Empleado a agregar" + empleado);
+		return empleadoServicio.guardarEmpleado(empleado);
+	}
 
 }
